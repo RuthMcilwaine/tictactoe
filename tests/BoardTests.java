@@ -11,7 +11,7 @@ public class BoardTests {
         Board board = new Board();
         boolean isMoveAccepted = board.isMoveAccepted(1,1);
         //test what happens
-        Assert.assertEquals(isMoveAccepted, true);
+        Assert.assertTrue(isMoveAccepted);
     }
 
     @Test
@@ -20,7 +20,7 @@ public class BoardTests {
         Player player = new Player("X");
         board.setPiece(1,1, player);
         boolean isMoveAccepted = board.isMoveAccepted(1,1);
-        Assert.assertEquals(isMoveAccepted, false);
+        Assert.assertFalse(isMoveAccepted);
     }
 
     // coordinates are out of bounds
@@ -29,7 +29,7 @@ public class BoardTests {
         Board board = new Board();
         boolean isMoveAccepted = board.isMoveAccepted(1,4);
         //test what happens
-        Assert.assertEquals(isMoveAccepted, false);
+        Assert.assertFalse(isMoveAccepted);
     }
 
     //piece placed correctly

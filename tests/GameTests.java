@@ -36,7 +36,7 @@ public class GameTests {
         game.takeTurn("0", "0");
         game.takeTurn("0", "1");
         game.takeTurn("0", "2");
-        Assert.assertEquals(true, game.checkForWinner());
+        Assert.assertTrue(game.checkForWinner());
 
     }
 
@@ -46,7 +46,7 @@ public class GameTests {
         game.takeTurn("0", "0");
         game.takeTurn("1", "0");
         game.takeTurn("2", "0");
-        Assert.assertEquals(true, game.checkForWinner());
+        Assert.assertTrue(game.checkForWinner());
 
     }
 
@@ -56,7 +56,7 @@ public class GameTests {
         game.takeTurn("0", "0");
         game.takeTurn("1", "1");
         game.takeTurn("2", "2");
-        Assert.assertEquals(true, game.checkForWinner());
+        Assert.assertTrue(game.checkForWinner());
 
     }
 }
