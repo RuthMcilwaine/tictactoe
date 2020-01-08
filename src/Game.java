@@ -7,6 +7,9 @@ public class Game {
     Player player2 = new Player(" O ");
     Player currentPlayer;
 
+    Scanner scanner = new Scanner(System.in);
+    String userInput = scanner.nextLine();
+    String[] CoordinatesSplit = userInput.split(",");
 
     public Player getCurrentPlayer() {
         return currentPlayer;
