@@ -8,7 +8,6 @@ public class Board {
         return board[row][column];
     }
 
-
     public Board() {
         // initialises the matrix
         board = new String[width][height];

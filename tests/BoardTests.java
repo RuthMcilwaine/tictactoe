@@ -1,8 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.logging.XMLFormatter;
-
 public class BoardTests {
 
     // test if place is already taken

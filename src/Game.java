@@ -11,29 +11,6 @@ public class Game {
     String userInput = scanner.nextLine();
     String[] CoordinatesSplit = userInput.split(",");
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-
-    public void changePlayer() {
-        if (currentPlayer == player1) {
-            currentPlayer = player2;
-        } else {
-            currentPlayer = player1;
-        }
-    }
-
-
-    public Boolean takeTurn(String rows, String columns) {
-        int row = Integer.parseInt(rows);
-        int column = Integer.parseInt(columns);
-        if (board.isMoveAccepted(row, column)) {
-            board.setPiece(row, column, currentPlayer);
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     public Boolean checkForWinner() {
         if (board.checkRow()) {
@@ -56,6 +33,28 @@ public class Game {
         }
     }
 
+    public Boolean takeTurn(String rows, String columns) {
+        int row = Integer.parseInt(rows);
+        int column = Integer.parseInt(columns);
+        if (board.isMoveAccepted(row, column)) {
+            board.setPiece(row, column, currentPlayer);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void changePlayer() {
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+        } else {
+            currentPlayer = player1;
+        }
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
 
     public Game() {
         currentPlayer = player1;
