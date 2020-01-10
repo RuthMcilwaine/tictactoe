@@ -2,14 +2,11 @@ import java.util.Scanner;
 
 public class Game {
 
-    Board board = new Board();
-    Player player1 = new Player(" X ");
-    Player player2 = new Player(" O ");
-    Player currentPlayer;
-
-    Scanner scanner = new Scanner(System.in);
-    String userInput = scanner.nextLine();
-    String[] CoordinatesSplit = userInput.split(",");
+    private Board board = new Board();
+    private Player player1 = new Player(" X ");
+    private Player player2 = new Player(" O ");
+    private Player currentPlayer = player1;
+    private GameState gameState = new GameState(board.toString(), currentPlayer.getPiece(), "New Game !");
 
 
     public Boolean checkForWinner() {
@@ -29,11 +26,19 @@ public class Game {
         if (takeTurn(CoordinatesSplit[0], CoordinatesSplit[1])) {
             if (!checkForWinner()) {
                 changePlayer();
+                gameState = new GameState(board.toString(), currentPlayer.getPiece(), "Success! Next turn!");
+
             }
+        }else {
+            gameState = new GameState(board.toString(), currentPlayer.getPiece(), "Invalid Move");
         }
     }
 
-    public Boolean takeTurn(String rows, String columns) {
+//    public String displayBoard() {
+//        return board.toString();
+//    }
+
+    private Boolean takeTurn(String rows, String columns) {
         int row = Integer.parseInt(rows);
         int column = Integer.parseInt(columns);
         if (board.isMoveAccepted(row, column)) {
@@ -44,20 +49,26 @@ public class Game {
         }
     }
 
-    public void changePlayer() {
+    private void changePlayer() {
         if (currentPlayer == player1) {
             currentPlayer = player2;
         } else {
             currentPlayer = player1;
         }
     }
+/*
 
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+*/
 
     public Game() {
         currentPlayer = player1;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }
 

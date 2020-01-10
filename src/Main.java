@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
@@ -5,10 +6,15 @@ public class Main {
         Game game = new Game();
 
         while (!game.checkForWinner()) {
-            System.out.println(game.board.toString());
-            System.out.println("Player " + game.getCurrentPlayer().getPiece() + ", please enter your coordinates:");
-            game.playersMove(game.CoordinatesSplit);
+            GameState gameState = game.getGameState();
+            System.out.println("Board: " + gameState.getCurrentBoard());
+            System.out.println("Player: " + gameState.getPiece());
+            System.out.println("Message: " + gameState.getMessage());
+            Scanner scanner = new Scanner(System.in);
+            String userInput = scanner.nextLine();
+            String[] coordinatesSplit = userInput.split(",");
+            game.playersMove(coordinatesSplit);
         }
-        System.out.println("Player " + game.getCurrentPlayer().getPiece() + " is the winner!");
+        System.out.println("Player " + game.getGameState() + " is the winner!");
     }
 }

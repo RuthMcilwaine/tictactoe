@@ -3,7 +3,6 @@ public class Board {
     private int height = 3;
     private String[][] board;
 
-
     public String retrievePieceAtCoordinates(int row, int column) {
         return board[row][column];
     }
@@ -23,14 +22,6 @@ public class Board {
         board[row][column] = player.getPiece();
     }
 
-    private boolean isOutOfBounds(int row, int column) {
-        return row > board.length || column > board.length;
-    }
-
-    private boolean isLocationEmpty(int row, int column) {
-        return ( !board[row][column].equals("X") && !board[row][column].equals("O") );
-    }
-
     public boolean isMoveAccepted(int row, int column) {
         if (!isOutOfBounds(row, column) && isLocationEmpty(row, column)) {
             return true;
@@ -40,7 +31,7 @@ public class Board {
     }
 
     public boolean checkRow() {
-        for (int r = 0; r < 3; r++) {
+        for (int r = 0; r <= 2; r++) {
             if (board[r][0] == board[r][1] && board[r][0] == board[r][2]) {
                 return true;
             }
@@ -49,7 +40,7 @@ public class Board {
     }
 
     public boolean checkColumn() {
-        for (int c = 0; c < 3; c++) {
+        for (int c = 0; c <= 2; c++) {
             if (board[0][c] == board[1][c] && board[0][c] == board[2][c]) {
                 return true;
             }
@@ -67,6 +58,13 @@ public class Board {
         return false;
     }
 
+    private boolean isOutOfBounds(int row, int column) {
+        return row > board.length || column > board.length;
+    }
+
+    private boolean isLocationEmpty(int row, int column) {
+        return ( !board[row][column].equals("X") && !board[row][column].equals("O") );
+    }
 
     @Override
     public String toString() {
@@ -82,7 +80,6 @@ public class Board {
         }
         return boardString;
     }
-
 }
 
 
