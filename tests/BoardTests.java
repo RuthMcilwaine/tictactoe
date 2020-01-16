@@ -15,8 +15,7 @@ public class BoardTests {
     @Test
     public void canTestIfLocationIsNotEmpty() {
         Board board = new Board();
-        Player player = new Player("X");
-        board.setPiece(1,1, player);
+        board.setPiece(1,1, "X");
         boolean isMoveAccepted = board.isMoveAccepted(1,1);
         Assert.assertFalse(isMoveAccepted);
     }
@@ -34,8 +33,7 @@ public class BoardTests {
     @Test
     public void isPiecePlacedInCorrectLocation() {
         Board board = new Board();
-        Player player = new Player("X");
-        board.setPiece(1, 1, player);
+        board.setPiece(1, 1, "X");
         String isPiecePlacedInCorrectLocation = board.retrievePieceAtCoordinates(1,1);
 
         Assert.assertEquals("X", isPiecePlacedInCorrectLocation);

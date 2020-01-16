@@ -8,7 +8,6 @@ public class Main {
         while (!game.checkForWinner()) {
             GameState gameState = game.getGameState();
             System.out.println("Board: " + gameState.getCurrentBoard());
-            System.out.println("Player: " + gameState.getPiece());
             System.out.println("Message: " + gameState.getMessage());
             Scanner scanner = new Scanner(System.in);
             String userInput = scanner.nextLine();

@@ -6,7 +6,7 @@ public class Player {
 
 
     public String getPiece() {
-        return piece;
+        return  piece;
     }
 
 

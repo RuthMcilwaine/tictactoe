@@ -1,13 +1,22 @@
-import java.util.Scanner;
 
 public class Game {
 
     private Board board = new Board();
-    private Player player1 = new Player(" X ");
-    private Player player2 = new Player(" O ");
-    private Player currentPlayer = player1;
-    private GameState gameState = new GameState(board.toString(), currentPlayer.getPiece(), "New Game !");
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
+    private GameState gameState;
 
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+        this.currentPlayer = player1;
+        this.gameState = new GameState(board.toString(), "New Game. Player" + currentPlayer.getPiece() + "take your turn!");
+    }
+
+    public Game() {
+        this(new Player(" X "),new Player(" O "));
+    }
 
     public Boolean checkForWinner() {
         if (board.checkRow()) {
@@ -23,26 +32,34 @@ public class Game {
     }
 
     public void playersMove(String[] CoordinatesSplit) {
-        if (takeTurn(CoordinatesSplit[0], CoordinatesSplit[1])) {
-            if (!checkForWinner()) {
-                changePlayer();
-                gameState = new GameState(board.toString(), currentPlayer.getPiece(), "Success! Next turn!");
+        if (!takeTurn(CoordinatesSplit[0], CoordinatesSplit[1])) {
+            gameState = new GameState(board.toString(), "Invalid Move. Try again!");
+            return;
+        }
 
-            }
-        }else {
-            gameState = new GameState(board.toString(), currentPlayer.getPiece(), "Invalid Move");
+        if (checkForWinner()) {
+            gameState = new GameState(board.toString(), "Player" + currentPlayer.getPiece() + "wins");
+            return;
+        }
+        if (checkForDraw()){
+            gameState = new GameState(board.toString(),  "Draw");
+                return;
+        }
+        else {
+            changePlayer();
+            gameState = new GameState(board.toString(), "Success! Player " + currentPlayer.getPiece() + " take your turn!");
         }
     }
 
-//    public String displayBoard() {
-//        return board.toString();
-//    }
+    private Boolean checkForDraw() {
+        return board.isFull();
+    }
 
-    private Boolean takeTurn(String rows, String columns) {
+    public Boolean takeTurn(String rows, String columns) {
         int row = Integer.parseInt(rows);
         int column = Integer.parseInt(columns);
         if (board.isMoveAccepted(row, column)) {
-            board.setPiece(row, column, currentPlayer);
+            board.setPiece(row, column, currentPlayer.getPiece());
             return true;
         } else {
             return false;
@@ -55,16 +72,6 @@ public class Game {
         } else {
             currentPlayer = player1;
         }
-    }
-/*
-
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
-*/
-
-    public Game() {
-        currentPlayer = player1;
     }
 
     public GameState getGameState() {

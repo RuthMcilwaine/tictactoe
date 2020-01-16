@@ -18,8 +18,8 @@ public class Board {
         }
     }
 
-    public void setPiece(int row, int column, Player player) {
-        board[row][column] = player.getPiece();
+    public void setPiece(int row, int column, String piece) {
+        board[row][column] = piece;
     }
 
     public boolean isMoveAccepted(int row, int column) {
@@ -58,12 +58,23 @@ public class Board {
         return false;
     }
 
+    public Boolean isFull() {
+        for (int r = 0; r < 2; r++) {
+            for (int c = 0; c < 2; c++) {
+                if (isLocationEmpty(r, c)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     private boolean isOutOfBounds(int row, int column) {
         return row > board.length || column > board.length;
     }
 
-    private boolean isLocationEmpty(int row, int column) {
-        return ( !board[row][column].equals("X") && !board[row][column].equals("O") );
+    public boolean isLocationEmpty(int row, int column) {
+        return ( board[row][column].contains(",") );
     }
 
     @Override
